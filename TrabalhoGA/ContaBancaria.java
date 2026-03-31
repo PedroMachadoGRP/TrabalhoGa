@@ -1,4 +1,4 @@
-public class ContaBancaria {
+public abstract class ContaBancaria {
     private Cliente cliente;
     private double saldoInical;
     private Movimentacao deposito;
