@@ -5,6 +5,14 @@ public class ContaInvestimento extends ContaBancaria {
 
     }
 
+    
+
+    public ContaInvestimento(Data dtVencimento, Cliente cliente) {
+        this.dtVencimento = dtVencimento;
+    }
+
+
+
     public Data getDtVencimento() {
         return dtVencimento;
     }

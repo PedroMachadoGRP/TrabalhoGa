@@ -49,6 +49,6 @@ public class Data {
 
     @Override
     public String toString() {
-        return "Dia: " + this.dia + "\n" + "mês: " + this.mes + "\n " + "ano: " + this.ano;
+        return "Dia: " + this.dia + "\n" + "mês: " + this.mes + "\n" + "ano: " + this.ano;
     }
 }
