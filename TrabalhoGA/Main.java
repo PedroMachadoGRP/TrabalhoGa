@@ -1,4 +1,5 @@
 public class Main {
+    
     public static void main(String[] args) {
         abrirMenu();
     }
@@ -56,9 +57,9 @@ public class Main {
                         contaBancaria = new ContaInvestimento(dtVencimento, cliente);
                     }
 
-                    double saldoI = Teclado.leDouble("Quanto é seu saldo inical? ");
+                    double depositoI = Teclado.leDouble("Quanto é seu saldo inical? ");
 
-                    contaBancaria.setSaldoInical(saldoI);
+                    contaBancaria.setSaldoInical(depositoI);
 
                     System.out.println("Seu saldo inical é de: " + contaBancaria.getSaldoInical());
 
@@ -70,6 +71,20 @@ public class Main {
                         System.out.println("Você deve criar uma conta primeiro");
                         break;
                     }
+
+                    double valorDeposito = Teclado.leDouble("Qual valor você deseja depositar?");
+
+                    if (valorDeposito <= 0) {
+                        System.out.println("O valor do depósito deve ser maior que zero.");
+                        break;
+                    }
+
+                    contaBancaria.setSaldoInical(
+                            contaBancaria.getSaldoInical() + valorDeposito);
+
+                    System.out.println("Depósito realizado com sucesso!");
+                    System.out.println("Novo saldo: " + contaBancaria.getSaldoInical());
+
                     break;
                 case 3:
                     if (!contaCriada) {
