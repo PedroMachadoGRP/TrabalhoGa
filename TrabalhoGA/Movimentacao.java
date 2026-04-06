@@ -23,5 +23,8 @@ public class Movimentacao {
         this.valorTotal = valorTotal;
     }
 
-    
+    public void registrar(double valor) {
+    this.quantidade++;
+    this.valorTotal += valor;
+}
 }
