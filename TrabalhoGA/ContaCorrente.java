@@ -1,24 +1,36 @@
+// Conta Corrente: permite depositos e saques com limite de credito
 public class ContaCorrente extends ContaBancaria {
 
-    private int diaAniversario;
-
-    
+    // Limite extra alem do saldo que o cliente pode usar
+    private double limiteCredito;
 
     public ContaCorrente(int diaAniversario, Cliente cliente) {
-        this.diaAniversario = diaAniversario;
+        this.setCliente(cliente);
     }
 
     public void movimenta(Operacao op) {
+        // Deposito: soma o valor ao saldo
+        if (op.getTipo() == 'D') {
+            setSaldoAtual(getSaldoAtual() + op.getValor());
+            getDeposito().registrar(op.getValor());
 
+        // Saque: verifica se tem saldo + limite disponivel
+        } else if (op.getTipo() == 'S') {
+            if (op.getValor() > getSaldoAtual() + limiteCredito) {
+                System.out.println("Saldo insuficiente!");
+            } else {
+                setSaldoAtual(getSaldoAtual() - op.getValor());
+                getSaques().registrar(op.getValor());
+            }
+        }
     }
 
-    public int getDiaAniversario() {
-        return diaAniversario;
+    // Getters e Setters
+    public double getLimiteCredito() {
+        return limiteCredito;
     }
 
-    public void setDiaAniversario(int diaAniversario) {
-        this.diaAniversario = diaAniversario;
+    public void setLimiteCredito(double limiteCredito) {
+        this.limiteCredito = limiteCredito;
     }
-
-    
 }
