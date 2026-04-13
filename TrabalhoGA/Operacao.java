@@ -1,3 +1,5 @@
+//classe que representa uma operação bancária (Depósito, Saque ou Juros).
+
 public class Operacao {
     private char tipo;
     private double valor;
