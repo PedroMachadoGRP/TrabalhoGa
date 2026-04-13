@@ -17,7 +17,68 @@ public abstract class ContaBancaria {
     }
 
     // Metodo abstrato implementado por cada tipo de conta
-    public abstract void movimenta(Operacao op);
+    public abstract boolean movimenta(Operacao op);
+
+    public int[] calcularCedulas(double valor) {
+    if (valor <= 0 || valor != Math.floor(valor)) {
+    return null;
+    }
+
+    int total = (int) valor;
+
+    for (int qtd100 = total / 100; qtd100 >= 0; qtd100--) {
+        int resto100 = total - (qtd100 * 100);
+
+    for (int qtd50 = resto100 / 50; qtd50 >= 0; qtd50--) {
+        int resto50 = resto100 - (qtd50 * 50);
+
+    for (int qtd20 = resto50 / 20; qtd20 >= 0; qtd20--) {
+        int resto = resto50 - (qtd20 * 20);
+
+        int[] restoResolvido = resolver10_5_2(resto);
+
+        if (restoResolvido != null) {
+        return new int[] {
+            qtd100, qtd50, qtd20,
+            restoResolvido[0], restoResolvido[1], restoResolvido[2]           
+        };
+        }
+        }
+        }       
+    }
+    return null;
+}
+
+private int[] resolver10_5_2(int valor) {
+    for (int qtd10 = valor / 10; qtd10 >= 0; qtd10--) {
+        int resto = valor - (qtd10 * 10);
+
+        if (resto == 0) {
+            return new int[] {qtd10, 0, 0};
+        }
+
+        if (resto >= 5 && (resto - 5) % 2 == 0) {
+            return new int[] {qtd10, 1, (resto - 5) / 2};
+        }
+
+        if (resto % 2 == 0) {
+            return new int[] {qtd10, 0, resto / 2};
+        }
+    }
+
+    return null;
+}
+
+public void imprimirCedulas(int[] quantidades) {
+    int[] cedulas = {100, 50, 20, 10, 5, 2};
+
+    System.out.println("Cedulas liberadas:");
+    for (int i = 0; i < cedulas.length; i++) {
+        if (quantidades[i] > 0) {
+            System.out.println(quantidades[i] + " notas de R$ " + cedulas[i]);
+        }
+    }
+}
 
     // Getters e Setters
     public Cliente getCliente() {
