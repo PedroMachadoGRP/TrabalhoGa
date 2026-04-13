@@ -1,3 +1,6 @@
+
+//Classe  que representa uma data simples (dia, mês e ano).
+
 public class Data {
     private int dia;
     private int mes;
@@ -45,10 +48,10 @@ public class Data {
         this.ano = ano;
     }
 
-
+    //Reescreve classe "toString já existente para exibir a data completa"
 
     @Override
     public String toString() {
-        return "Dia: " + this.dia + "\n" + "mês: " + this.mes + "\n " + "ano: " + this.ano;
+        return "Dia: " + this.dia + "\n" + "mês: " + this.mes + "\n" + "ano: " + this.ano;
     }
 }
