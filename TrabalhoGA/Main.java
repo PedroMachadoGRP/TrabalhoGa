@@ -89,7 +89,35 @@ public class Main {
                         System.out.println("O valor deve ser maior que zero.");
                         break;
                     }
+                    int[] notas = {100, 50, 20, 10, 5, 2};
+                    int valorInt = (int) valorSaque;
+
+                    if (valorSaque != valorInt) {
+                        System.out.println("Valor invalido! Use apenas valores inteiros.");
+                        break;
+                    }
+
+                    int restante = valorInt;
+                    for (int nota : notas) {
+                    restante -= (restante / nota) * nota;
+                    }
+
+                    if (restante != 0) {
+                    System.out.println("Valor nao pode ser formado com as notas disponíveis (100, 50, 20, 10, 5, 2).");
+                        break;
+                    }
+
                     contaBancaria.movimenta(new Operacao('S', valorSaque));
+
+                    System.out.println("Notas liberadas:");
+                        restante = valorInt;
+                    for (int nota : notas) {
+                    int qtd = restante / nota;
+                    if (qtd > 0) {
+                        System.out.println(qtd + " nota(s) de R$ " + nota);
+                        restante -= qtd * nota;
+                    }
+                    }
                     System.out.println("Novo saldo: " + contaBancaria.getSaldoAtual());
                     break;
 
@@ -125,6 +153,8 @@ public class Main {
                     System.out.println("Depositos: " + contaBancaria.getDeposito().getQuantidade() + " - Total: R$ " + contaBancaria.getDeposito().getValorTotal());
                     System.out.println("Saques: " + contaBancaria.getSaques().getQuantidade() + " - Total: R$ " + contaBancaria.getSaques().getValorTotal());
                     System.out.println("Juros: " + contaBancaria.getJuros().getQuantidade() + " - Total: R$ " + contaBancaria.getJuros().getValorTotal());
+                    System.out.println("Saldo minimo: " + contaBancaria.getSaldoMinimo());
+                    System.out.println("Saldo maximo: " + contaBancaria.getSaldoMaximo());
                     break;
 
                 case 6:
